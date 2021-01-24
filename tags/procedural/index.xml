@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>procedural on Palmdrop</title>
+    <link>https://palmdrop.github.io/tags/procedural/</link>
+    <description>Recent content in procedural on Palmdrop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 18:25:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/tags/procedural/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My take on domain warping</title>
+      <link>https://palmdrop.github.io/post/domain-warping/</link>
+      <pubDate>Sun, 24 Jan 2021 18:25:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/domain-warping/</guid>
+      <description>&lt;p&gt;Domain warping: a procedural method for generating natural-looking patterns and shapes. I&amp;rsquo;ve used this technique for a long time, and the results can be beautiful and strangely organic. This post will explore my (slightly different) approach, and some of the images this approached helped produce.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

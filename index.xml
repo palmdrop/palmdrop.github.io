@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Palmdrop</title>
+    <link>https://palmdrop.github.io/</link>
+    <description>Recent content on Palmdrop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jan 2021 18:25:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My take on domain warping</title>
+      <link>https://palmdrop.github.io/post/domain-warping/</link>
+      <pubDate>Sun, 24 Jan 2021 18:25:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/domain-warping/</guid>
+      <description>&lt;p&gt;Domain warping: a procedural method for generating natural-looking patterns and shapes. I&amp;rsquo;ve used this technique for a long time, and the results can be beautiful and strangely organic. This post will explore my (slightly different) approach, and some of the images this approached helped produce.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://palmdrop.github.io/about/</link>
+      <pubDate>Sat, 05 Nov 2016 21:05:33 +0530</pubDate>
+      
+      <guid>https://palmdrop.github.io/about/</guid>
+      <description>It&amp;rsquo;s quite natural that new technologies and emerging media eventually are used as artistic tools. Digital art has been created for decades, there&amp;rsquo;s been a recent boom in AI art, and there are huge communities of generative artists working with code as their creative medium.
+For many years now, I&amp;rsquo;ve been using generative/procedural techniques to learn more about programming and digital technologies, and simultaneously to realize my more aesthetic pursuits. I&amp;rsquo;ve experimented with well-known techniques such as domain warping and particle simulations, while also spending time with my own concepts and ideas.</description>
+    </item>
+    
+  </channel>
+</rss>
