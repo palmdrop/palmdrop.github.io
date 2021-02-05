@@ -6,7 +6,16 @@
     <description>Recent content in noise on Palmdrop</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jan 2021 18:25:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/tags/noise/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 20:12:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/tags/noise/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Characteristics of Modified Noise</title>
+      <link>https://palmdrop.github.io/post/characteristics-of-modified-noise/</link>
+      <pubDate>Fri, 05 Feb 2021 20:12:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/characteristics-of-modified-noise/</guid>
+      <description>&lt;p&gt;Regular gradient noise, such as Perlin and Simplex noise, is extremely useful for procedurally generating textures, flowfields, heightmaps, etc. But a texture or heightmap created using plain noise is rarely that interesting. Often, noise is modified or used in unique, creative ways.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>My take on domain warping</title>
       <link>https://palmdrop.github.io/post/domain-warping/</link>

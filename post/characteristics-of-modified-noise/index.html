@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/palmdrop.github.io"
+        },
+        "articleSection" : "post",
+        "name" : "The Characteristics of Modified Noise",
+        "headline" : "The Characteristics of Modified Noise",
+        "description" : "\u003cp\u003eRegular gradient noise, such as Perlin and Simplex noise, is extremely useful for procedurally generating textures, flowfields, heightmaps, etc. But a texture or heightmap created using plain noise is rarely that interesting. Often, noise is modified or used in unique, creative ways.\u003c\/p\u003e",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2021",
+        "datePublished": "2021-02-05 20:12:22 \u002b0100 CET",
+        "dateModified" : "2021-02-05 20:12:22 \u002b0100 CET",
+        "url" : "https:\/\/palmdrop.github.io\/post\/characteristics-of-modified-noise\/",
+        "wordCount" : "2242",
+        "image" : "https://palmdrop.github.ioimg/cmn/banner.png"",
+        "keywords" : [ ""noise"",""perlin"",""simplex"",""generative"",""procedural"","Blog" ]   
+    }
+    </script>
+
+
+ <title>The Characteristics of Modified Noise </title>
+
+
+<meta name="description" content="Personal blog for sharing procedural techniques, thoughts and data experiments." />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="https://fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<link href="https://palmdrop.github.io/css/style.css?v=1612552433" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://palmdrop.github.io/css/custom.css?v=1612552433" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fas fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+          <a href="/categories/generative">generative</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="https://www.instagram.com/palmdrop/" data-animate-hover="pulse" class="instagram" target="_blank">
+        <i class="fab fa-instagram" title="instagram"></i>
+        <span class="screen-reader-text">instagram</span>
+      </a>
+    </li>
+    
+
+    
+    <li>
+      <a href="mailto:anton@exlex.se" data-animate-hover="pulse" class="email">
+        <i class="fas fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+
+    
+    <li>
+      <a href="https://github.com/palmdrop" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fab fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+    
+    <li>
+      <a href="https://palmdrop.github.io/index.xml" data-animate-hover="pulse" class="rss" target="_blank">
+        <i class="fas fa-rss" title="rss"></i>
+        <span class="screen-reader-text">rss</span>
+      </a>
+    </li>
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Palmdrop </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Generative art and data experiements</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://palmdrop.github.io/">Posts</a>
+          
+        </li>
+        
+        <li class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://palmdrop.github.io/about/">About</a>
+          
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  
+  
+    
+  
+  
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image'  data-background="https://palmdrop.github.io/img/cmn/banner.png">
+      </div>
+      
+        <div class="entry-meta">
+          
+
+		  
+
+
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> The Characteristics of Modified Noise</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>Regular gradient noise, such as Perlin and Simplex noise, is extremely useful for procedurally generating textures, flowfields, heightmaps, etc. But a texture or heightmap created using plain noise is rarely that interesting. Often, noise is modified or used in unique, creative ways.</p>
+<p>Frankly, regular noise is boring. Not very visually pleasing. Repetitive. Not even Ken Perlin used Perlin noise without changing it in various ways. This blog post describes some of the ways I&rsquo;ve been altering the noise functions I work with to achieve more interesting results. In my next post, I will document how I&rsquo;ve used the techniques from this post and <a href="https://palmdrop.github.io/post/domain-warping/">my previous post</a> to create quite interesting generative art pieces.</p>
+<p>These are the techniques I&rsquo;ll cover in this post, roughly in order of increasing enchantment:</p>
+<ul>
+<li>Stretched noise</li>
+<li>Modulo noise</li>
+<li>Powered noise</li>
+<li>Noise combinations</li>
+<li>Ridged noise</li>
+<li>Fractal noise (fractal Brownian motion)</li>
+<li>Dynamic fractal noise</li>
+</ul>
+<p>Note: I&rsquo;m no expert. I will not cover the mathematics of gradient noise. I&rsquo;m merely documenting my explorations.</p>
+<h3 id="setup">Setup</h3>
+<p>In this post, I&rsquo;ll often compare 1D and 2D representations of various noise variations. Like this:</p>
+<p><img src="/img/cmn/perlin-comparison.png" alt="1D Perlin noise"></p>
+<p>That was Perlin noise. I&rsquo;d like to note that I mostly use <a href="https://en.wikipedia.org/wiki/Simplex_noise">Simplex noise</a> instead, to avoid the directional artifacts that emerge when the frequency of Perlin noise is increased. Simplex noise does not suffer from the same artifacts and has some additional benefits (which I will not cover here).</p>
+<p>Below you&rsquo;ll see a comparison of high-frequency Perlin noise vs high-frequency simplex noise. A clear differenc, no?</p>
+<p><img src="/img/cmn/perlin2D-high.png" alt="2D perlin noise with high frequency">
+<img src="/img/cmn/simplex2D-high.png" alt="2d simplex noise with high frequency"></p>
+<p>Also, unless I say otherwise, assume the output of the noise is in the range of 0.0 to 1.0.</p>
+<p>Let&rsquo;s get into some variations.</p>
+<h1 id="stretched-noise">Stretched Noise</h1>
+<p>Extremely easy to achieve. Could be used as the basis of a wood or carpet texture, with some creativity. This effect is achieved by having different frequency values for the x and y directions (and z, if you&rsquo;re working in three dimensions). This is a type of domain warping.</p>
+<p><img src="/img/cmn/simplex2D-stretched.png" alt="stretched simplex noise"></p>
+<p>Before introducing some simple pseudo-code, let me familiarize you with my syntax. In this post, I&rsquo;ll heavily use lambda expressions. <a href="https://en.wikipedia.org/wiki/Anonymous_function#Java">My syntax is the same as the one used in Java.</a>, i.e <code>func = (x,y) -&gt; x + y</code> defines a function <code>func</code> which takes two arguments and adds them together.</p>
+<p>Moving on.</p>
+<p>Suppose we have a noise function <code>N</code> which takes a two-dimensional point/vector <code>p</code> as its input. To stretch the noise, we&rsquo;ll scale the <code>x</code> and <code>y</code> components of <code>p</code> using two scaling values, <code>sx</code> and <code>sy</code>.</p>
+<pre><code>N' = (p) -&gt; N(vec2(p.x * sx, p.y * sy))
+</code></pre>
+<p>One issue with this is that you can only scale along the axes, not in an arbitrary direction. This could be solved with some additional vector math, or by rotating the entire domain with some angle. However, I&rsquo;ll not cover that here.</p>
+<p>Instead, on to more interesting stuff.</p>
+<h3 id="modulus-noise">Modulus noise</h3>
+<p>Not that groundbreaking. The idea is that we apply a modulus operator to the output of the noise function. With a modulus value of 0.5, the output will effectively &ldquo;wrap around&rdquo; if it exceeds 0.5. However, the new output will be in the range of 0.0 to 0.5. Therefore, I always use a modulus value of 1.0 and increase the amplitude of the noise function to get the same effect. E.g, scale with 2.0 and wrap at 1.0, and the result will be equal to a wrap at 0.5, with the exception that the output range remains 0.0 to 1.0.</p>
+<p>If we have a noise function <code>N</code> and a multiplier <code>k</code>, we might then define a new noise function like this:</p>
+<pre><code>N' = (p) -&gt; mod(N(p) * k, 1.0)
+</code></pre>
+<p>An additional benefit with this method is that if <code>k</code> is an integer value, the modified noise function will &ldquo;wrap around&rdquo; <code>k</code> times. Easy to control.</p>
+<p>Here&rsquo;s an example:</p>
+<p><img src="/img/cmn/simplex2D-modded.png" alt="Modded simplex noise"></p>
+<p>Some of you might see the similarity to metaballs. The math is completely different, but the visual result is quite similar.</p>
+<h3 id="powered-noise">Powered noise</h3>
+<p>Again, quite simple &ndash; just apply the pow operator to the noise output. As long as the noise is in the range of 0.0 and 1.0, this operation will preserve that range. If <code>f(x)</code> is a straight line with an angle of 45 degrees, one can visualize the effect as follows:</p>
+<p><img src="/img/cmn/graphs.png" alt="Pow visualization"></p>
+<p>And these are the same operations applied to noise:</p>
+<p><img src="/img/cmn/simplex2D-pow-high.png" alt="High powered simplex noise">
+<img src="/img/cmn/simplex2D-pow-low.png" alt="Low powered simplex noise"></p>
+<p>Not that fascinating, but useful. You might want to use noise to generate random islands (say, every value above 0.5 is land, the rest is water). A bigger exponent will produce smaller islands, a smaller exponent will produce bigger islands.</p>
+<p>Below is some simple pseudo-code using an exponent <code>k</code>:</p>
+<pre><code>N' = (p) -&gt; pow(N(p), k)
+</code></pre>
+<p>The more interesting results appear when you understand that <code>k</code> doesn&rsquo;t have to be constant &ndash; <code>k</code> can be scaled using another noise function. The effect now varies across space.</p>
+<p><img src="/img/cmn/simplex2D-pow-variable.png" alt="Variable powered simplex noise"></p>
+<p>High-frequency noise is used as the base, low-frequency noise as the exponent scaling function. If <code>k</code> is our exponent and <code>S</code> is the scaling function, we get this pseudo code:</p>
+<pre><code>N' = (p) -&gt; pow(N(p), k * S(p))
+</code></pre>
+<p>Perhaps you could use this to create a set of archipelagos.</p>
+<h1 id="noise-combinations">Noise combinations</h1>
+<p>The result of multiple noise functions can easily be combined using regular binary operators, such as adding, multiplying, subtracting, or dividing (although dividing might cause unpredictable output intervals and division with zero problems).</p>
+<p>One simple way to combine two noise functions is to multiply the results together. This produces something similar to powered noise, but with a less organic feel. Here&rsquo;s low-frequency noise and high-frequency noise combined.</p>
+<p><img src="/img/cmn/simplex2D-combined.png" alt="Combined simplex noise"></p>
+<p>If we have two noise functions <code>N1</code> and <code>N2</code> they can be combined as follows:</p>
+<pre><code>N' = (p) -&gt; N1(p) * N2(p)
+</code></pre>
+<p>Adding or subtracting could be done as well. When adding multiple noise functions together, while changing the amplitude and frequency, one gets something called fractal noise. More on that later.</p>
+<h1 id="ridged-noise">Ridged noise</h1>
+<p>Ridged noise is often used to create mountainous terrain (especially when combined with fractal noise). One creates ridged noise by &ldquo;inverting&rdquo; all noise values that exceeds some threshold. However, we invert around said threshold. Not clear? This means that as soon as the slope reaches a certain point, it&rsquo;s forced to immediately start going down again, which causes a sharp spike. This will become more clear when you read the pseudo-code.</p>
+<p>Here&rsquo;s 1D ridged noise, which should communicate the idea:</p>
+<p><img src="/img/cmn/simplex1D-ridged.png" alt="1D ridged simplex noise"></p>
+<p>While regular noise might be useful for generating smooth hills, this type of noise is more suited for generating mountainous terrain (or generally sharp textures).</p>
+<p>How to calculate a ridged noise value? Say <code>t</code> is our threshold and <code>n</code> is the value we&rsquo;d like to apply the operation to. Then, if <code>n &gt; t</code> we calculate how much <code>n</code> exceeds <code>t</code> with, i.e <code>n - t</code>. We then subtract this value from the threshold. The resulting expression becomes <code>t - (n - t)</code> (which of course could be simplified, but I prefer it this way since it clearly communicates the idea).</p>
+<p>This only works if <code>t</code> is no less than 0.5 (for noise functions returning values between 0.0 and 1.0). If <code>t</code> is smaller, the operation might return a negative value. My solution to this is to simply invert negative values. This might still cause issues if <code>t</code> is even smaller: by negating the result, the new value could once again be greater than <code>t</code>. If that case, the operation could be applied continuously until the result is in the range of 0.0 and <code>t</code>.</p>
+<p>This is my solution in pseudo code, using a noise function <code>N</code> and a threshold <code>t</code>:</p>
+<pre><code>N' = (p) -&gt; 
+    n = N(p)
+    while n &gt; t
+         v = t - (n - t)
+         if v &lt; 0
+            v = -v
+    return v / t
+</code></pre>
+<p>The last division makes sure the return value is in the range of 0.0 and 1.0.</p>
+<p>However, I recommend constraining <code>t</code> to a range of 0.5 to 1.0, to prevent strange visual effects with downwards spikes as well as upwards (unless this is what you want).</p>
+<p>Anyway, here&rsquo;s 2D ridged simplex noise.</p>
+<p><img src="/img/cmn/simplex2D-ridged-high.png" alt="2D ridged simplex noise"></p>
+<p>Ridged noise can also be combined with powered noise, to amplify the &ldquo;ridges&rdquo;. Here are two examples:</p>
+<p><img src="/img/cmn/simplex2D-ridged-pow.png" alt="2D ridged simplex noise">
+<img src="/img/cmn/simplex2D-ridged-pow2.png" alt="2D ridged simplex noise"></p>
+<h1 id="frequency-modulation">Frequency modulation</h1>
+<p>This is a type of domain warping. Normally, the frequency of a noise function is constant, but here, a second function scales the frequency differently depending on the position.</p>
+<p>Consider a noise function <code>N</code> and a scaling function <code>S</code>. We get</p>
+<pre><code>N' = (p) -&gt; N(p * S(p))
+</code></pre>
+<p>One thing to note about this is that positions far away from origo will be affected more than positions closer to the origo. E.g, if <code>p</code> is at a distance of 2.0 from origo, multiplying by 3.0 will translate it to a distance of 6.0 from origo. However, if <code>p</code> is at a distance of 10.0 from origo, multiplying with 3.0 will translate to a distance of 30.0. A change of 4.0 versus 20.0 units. The effect is hence more acute farther from origo.</p>
+<p><img src="/img/cmn/simplex2D-frequency-mod.png" alt="2D frequency modulated simplex noise"></p>
+<p>Frequency modulation is a bit hard to work with since the effect is different depending on the distance from origo. But I&rsquo;ve successfully used it in the past, to a limited extent. <a href="https://www.instagram.com/p/CApnNi9n0nF/">This old Instagram post</a> uses this technique (here, origo is in the center of the image).</p>
+<h1 id="fractal-noise-fractal-brownian-motion">Fractal noise (fractal Brownian motion)</h1>
+<p>Once again, Inigo Quilez has a great <a href="https://www.iquilezles.org/www/articles/fbm/fbm.htm">blog post</a> on the subject, which goes into a lot more detail than I will. I recommend reading it.</p>
+<p>Just let me summarize: Fractal noise is many layers of noise, or octaves, added together. For each octave, the frequency is typically increased and the amplitude decreased. This way, each subsequent octave has less influence over the overall output but provides more fine detail.</p>
+<p>The &ldquo;lacunarity&rdquo; of fractal noise is the frequency multiplier. For each new octave, we multiply the base frequency with this value. The &ldquo;persistence&rdquo; is the same thing, but for amplitude.</p>
+<p>Say we have a list of noise functions <code>LN</code>, a base frequency of <code>f</code>, a lacunarity of <code>L</code> and a persistance of <code>P</code>, this is how I typically create fractal noise:</p>
+<pre><code>N' = (p) -&gt;
+    sum = 0.0
+    for i in [0... (LN.length - 1)] 
+        N = LN[i]
+        frequency = f * pow(L, i)
+        amplitude = 1.0 * pow(P, i)
+        sum += N(p * frequency) * amplitude
+    return sum
+</code></pre>
+<p>Here, we iterate over the indices of <code>LN</code> and retrieve each noise function. Then we calculate the frequency and amplitude of the current octave. E.g, if <code>L = 2.0</code>, the first iteration we get <code>frequency = f * 2.0^0 = f * 1.0</code>, the second we get <code>frequency = f * 2.0^1.0 = f * 2.0</code>, the third we get <code>frequency = f * 2.0^2 = f * 4.0</code> and so on. A common value for <code>L</code> is 2.0 and a common value for <code>P</code> is 0.5. That means that for each iteration, the frequency doubles, and the amplitude is halved. This ensures that the details are increased while the influence over the general shape is reduced. Here are some examples in 1D and 2D:</p>
+<p><img src="/img/cmn/fractal-noise1D.png" alt="1D fractal noise">
+<img src="/img/cmn/fractal-noise2D.png" alt="2D fractal noise"></p>
+<p>The first one already is a lot more mountain-like than regular noise. However, we can combine fractal noise with ridged noise to amplify the effect. Simply use the same method as the one described above, but let <code>LN</code> be a list of ridged noise functions.</p>
+<p><img src="/img/cmn/ridged-fractal-noise1D.png" alt="1D ridged fractal noise">
+<img src="/img/cmn/ridged-fractal-noise2D.png" alt="2D ridged fractal noise"></p>
+<p>The 2D example doesn&rsquo;t look very mountain-like, but when rendered in 3D one can embody the true mountain essence. I once again urge you to read <a href="https://www.iquilezles.org/www/articles/fbm/fbm.htm">Inigo Quilez post</a>.</p>
+<p>An additional note: a side effect of combining noise functions in this way is that the return values no longer will be in the range of 0 to 1.0. I often calculate the maximum value possible and divide by this to normalize the results.</p>
+<p>In my next post, I&rsquo;ll go through some exciting results I&rsquo;ve achieved when combining fractal noise and domain warping.</p>
+<h1 id="dynamic-fractal-noise">Dynamic fractal noise</h1>
+<p>This is a variation on regular fractal noise. Perhaps there is a name for this already. The idea is that the lacunarity and persistence don&rsquo;t have to be the same everywhere. With regular fractal noise, the level of detail is constant, which will make the terrain equally rough in all places. But if we vary the persistence, some areas would be more smooth and others rougher. The lacunarity could also be varied, however, this creates almost the same effect as frequency modulation (essentially, you create layers of frequency-modulated noise).</p>
+<p>Let&rsquo;s take the same code as with regular fractal noise, but introduce a scaling noise <code>S</code> which will be used to vary the persistence. We get</p>
+<pre><code>N' = (p) -&gt;
+    sum = 0.0
+    for i in [0 ... LN.length] 
+        N = LN[i]
+        frequency = f * pow(L, i)
+        amplitude = 1.0 * pow(P * S(p), i)
+        sum += N(p * frequency) * amplitude
+    return sum
+</code></pre>
+<p>The only difference is the line that calculates the amplitude. One thing worth noting is that the areas with less detail will often have lower general amplitude since the amplitude of all octaves is scaled equally. It&rsquo;s of course also possible to have different scaling functions for different octaves.</p>
+<p>Anyway, here&rsquo;s 1D dynamic fractal noise. Note that the lower area is a lot smoother than the peaks. This is also clearly visible in the 2D representation.</p>
+<p><img src="/img/cmn/dynamic-fractal-noise1D.png" alt="1D dynamic fractal noise">
+<img src="/img/cmn/dynamic-fractal-noise2D.png" alt="2D dynamic fractal noise"></p>
+<p>Using all these techniques, combined with domain warping, I&rsquo;ve managed to create extremely interesting shapes and textures. I&rsquo;ll make a complete post detailing some of these configurations and the output they produced soon. Until then, here&rsquo;s one of my favorites:</p>
+<p><img src="/img/cmn/showcase.png" alt="Bridge"></p>
+<p>Stay safe.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/generative" title="View all posts in Generative">Generative</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/noise" title="View all posts tagged noise">noise</a>
+  
+  <a href="/tags/perlin" title="View all posts tagged perlin">perlin</a>
+  
+  <a href="/tags/simplex" title="View all posts tagged simplex">simplex</a>
+  
+  <a href="/tags/generative" title="View all posts tagged generative">generative</a>
+  
+  <a href="/tags/procedural" title="View all posts tagged procedural">procedural</a>
+  
+
+</p></div>	</div>
+
+	
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+	<h1>
+    
+    <a href=""> Palmdrop </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Generative art and data experiements</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+
+        
+
+
+        
+
+        
+        <li>
+        <a href="https://www.instagram.com/palmdrop/"  class="instagram" target="_blank">
+            <i class="fab fa-instagram" title="instagram"></i>
+            <span class="screen-reader-text">instagram</span>
+        </a>
+        </li>
+        
+
+        
+        <li>
+        <a href="mailto:anton@exlex.se"  class="email">
+            <i class="fas fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+
+
+        
+        <li>
+        <a href="https://github.com/palmdrop"  class="github" target="_blank">
+            <i class="fab fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+        
+        <li>
+        <a href="https://palmdrop.github.io/index.xml" data-animate-hover="pulse" class="rss" target="_blank">
+            <i class="fas fa-rss" title="rss"></i>
+            <span class="screen-reader-text">rss</span>
+        </a>
+        </li>
+        
+
+        
+	</div>
+</footer>
+
+  </div>
+  <script src="https://palmdrop.github.io/js/jquery.min.js"></script>
+<script src="https://palmdrop.github.io/js/jquerymigrate.js"></script>
+<script src="https://palmdrop.github.io/js/production.min.js?v=1612552433"></script>
+
+</body>
+</html>
