@@ -45,9 +45,9 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<link href="https://palmdrop.github.io/css/style.css?v=1614603999" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+<link href="https://palmdrop.github.io/css/style.css?v=1614604292" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
 
-<link href="https://palmdrop.github.io/css/custom.css?v=1614603999" rel="stylesheet" type='text/css' media='all'>
+<link href="https://palmdrop.github.io/css/custom.css?v=1614604292" rel="stylesheet" type='text/css' media='all'>
 <link rel="shortcut icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
 
@@ -232,7 +232,7 @@
 <img src="/img/cmn/simplex2D-high.png" alt="2d simplex noise with high frequency"></p>
 <p>Also, unless I say otherwise, assume the output of the noise is in the range of 0.0 to 1.0.</p>
 <p>Let&rsquo;s get into some variations.</p>
-<h1 id="stretched-noise">Stretched Noise</h1>
+<h2 id="stretched-noise">Stretched Noise</h2>
 <p>Extremely easy to achieve. Could be used as the basis of a wood or carpet texture, with some creativity. This effect is achieved by having different frequency values for the x and y directions (and z, if you&rsquo;re working in three dimensions). This is a type of domain warping.</p>
 <p><img src="/img/cmn/simplex2D-stretched.png" alt="stretched simplex noise"></p>
 <p>Before introducing some simple pseudo-code, let me familiarize you with my syntax. In this post, I&rsquo;ll heavily use lambda expressions. <a href="https://en.wikipedia.org/wiki/Anonymous_function#Java">My syntax is the same as the one used in Java.</a>, i.e <code>func = (x,y) -&gt; x + y</code> defines a function <code>func</code> which takes two arguments and adds them together.</p>
@@ -242,7 +242,7 @@
 </code></pre>
 <p>One issue with this is that you can only scale along the axes, not in an arbitrary direction. This could be solved with some additional vector math, or by rotating the entire domain with some angle. However, I&rsquo;ll not cover that here.</p>
 <p>Instead, on to more interesting stuff.</p>
-<h3 id="modulus-noise">Modulus noise</h3>
+<h2 id="modulus-noise">Modulus noise</h2>
 <p>Not that groundbreaking. The idea is that we apply a modulus operator to the output of the noise function. With a modulus value of 0.5, the output will effectively &ldquo;wrap around&rdquo; if it exceeds 0.5. However, the new output will be in the range of 0.0 to 0.5. Therefore, I always use a modulus value of 1.0 and increase the amplitude of the noise function to get the same effect. E.g, scale with 2.0 and wrap at 1.0, and the result will be equal to a wrap at 0.5, with the exception that the output range remains 0.0 to 1.0.</p>
 <p>If we have a noise function <code>N</code> and a multiplier <code>k</code>, we might then define a new noise function like this:</p>
 <pre><code>N' = (p) -&gt; mod(N(p) * k, 1.0)
@@ -251,7 +251,7 @@
 <p>Here&rsquo;s an example:</p>
 <p><img src="/img/cmn/simplex2D-modded.png" alt="Modded simplex noise"></p>
 <p>Some of you might see the similarity to metaballs. The math is completely different, but the visual result is quite similar.</p>
-<h3 id="powered-noise">Powered noise</h3>
+<h2 id="powered-noise">Powered noise</h2>
 <p>Again, quite simple &ndash; just apply the pow operator to the noise output. As long as the noise is in the range of 0.0 and 1.0, this operation will preserve that range. If <code>f(x)</code> is a straight line with an angle of 45 degrees, one can visualize the effect as follows:</p>
 <p><img src="/img/cmn/graphs.png" alt="Pow visualization"></p>
 <p>And these are the same operations applied to noise:</p>
@@ -267,7 +267,7 @@
 <pre><code>N' = (p) -&gt; pow(N(p), k * S(p))
 </code></pre>
 <p>Perhaps you could use this to create a set of archipelagos.</p>
-<h1 id="noise-combinations">Noise combinations</h1>
+<h2 id="noise-combinations">Noise combinations</h2>
 <p>The result of multiple noise functions can easily be combined using regular binary operators, such as adding, multiplying, subtracting, or dividing (although dividing might cause unpredictable output intervals and division with zero problems).</p>
 <p>One simple way to combine two noise functions is to multiply the results together. This produces something similar to powered noise, but with a less organic feel. Here&rsquo;s low-frequency noise and high-frequency noise combined.</p>
 <p><img src="/img/cmn/simplex2D-combined.png" alt="Combined simplex noise"></p>
@@ -275,7 +275,7 @@
 <pre><code>N' = (p) -&gt; N1(p) * N2(p)
 </code></pre>
 <p>Adding or subtracting could be done as well. When adding multiple noise functions together, while changing the amplitude and frequency, one gets something called fractal noise. More on that later.</p>
-<h1 id="ridged-noise">Ridged noise</h1>
+<h2 id="ridged-noise">Ridged noise</h2>
 <p>Ridged noise is often used to create mountainous terrain (especially when combined with fractal noise). One creates ridged noise by &ldquo;inverting&rdquo; all noise values that exceeds some threshold. However, we invert around said threshold. Not clear? This means that as soon as the slope reaches a certain point, it&rsquo;s forced to immediately start going down again, which causes a sharp spike. This will become more clear when you read the pseudo-code.</p>
 <p>Here&rsquo;s 1D ridged noise, which should communicate the idea:</p>
 <p><img src="/img/cmn/simplex1D-ridged.png" alt="1D ridged simplex noise"></p>
@@ -298,7 +298,7 @@
 <p>Ridged noise can also be combined with powered noise, to amplify the &ldquo;ridges&rdquo;. Here are two examples:</p>
 <p><img src="/img/cmn/simplex2D-ridged-pow.png" alt="2D ridged simplex noise">
 <img src="/img/cmn/simplex2D-ridged-pow2.png" alt="2D ridged simplex noise"></p>
-<h1 id="frequency-modulation">Frequency modulation</h1>
+<h2 id="frequency-modulation">Frequency modulation</h2>
 <p>This is a type of domain warping. Normally, the frequency of a noise function is constant, but here, a second function scales the frequency differently depending on the position.</p>
 <p>Consider a noise function <code>N</code> and a scaling function <code>S</code>. We get</p>
 <pre><code>N' = (p) -&gt; N(p * S(p))
@@ -306,7 +306,7 @@
 <p>One thing to note about this is that positions far away from origo will be affected more than positions closer to the origo. E.g, if <code>p</code> is at a distance of 2.0 from origo, multiplying by 3.0 will translate it to a distance of 6.0 from origo. However, if <code>p</code> is at a distance of 10.0 from origo, multiplying with 3.0 will translate to a distance of 30.0. A change of 4.0 versus 20.0 units. The effect is hence more acute farther from origo.</p>
 <p><img src="/img/cmn/simplex2D-frequency-mod.png" alt="2D frequency modulated simplex noise"></p>
 <p>Frequency modulation is a bit hard to work with since the effect is different depending on the distance from origo. But I&rsquo;ve successfully used it in the past, to a limited extent. <a href="https://www.instagram.com/p/CApnNi9n0nF/">This old Instagram post</a> uses this technique (here, origo is in the center of the image).</p>
-<h1 id="fractal-noise-fractal-brownian-motion">Fractal noise (fractal Brownian motion)</h1>
+<h2 id="fractal-noise-fractal-brownian-motion">Fractal noise (fractal Brownian motion)</h2>
 <p>Once again, Inigo Quilez has a great <a href="https://www.iquilezles.org/www/articles/fbm/fbm.htm">blog post</a> on the subject, which goes into a lot more detail than I will. I recommend reading it.</p>
 <p>Just let me summarize: Fractal noise is many layers of noise, or octaves, added together. For each octave, the frequency is typically increased and the amplitude decreased. This way, each subsequent octave has less influence over the overall output but provides more fine detail.</p>
 <p>The &ldquo;lacunarity&rdquo; of fractal noise is the frequency multiplier. For each new octave, we multiply the base frequency with this value. The &ldquo;persistence&rdquo; is the same thing, but for amplitude.</p>
@@ -329,7 +329,7 @@
 <p>The 2D example doesn&rsquo;t look very mountain-like, but when rendered in 3D one can embody the true mountain essence. I once again urge you to read <a href="https://www.iquilezles.org/www/articles/fbm/fbm.htm">Inigo Quilez post</a>.</p>
 <p>An additional note: a side effect of combining noise functions in this way is that the return values no longer will be in the range of 0 to 1.0. I often calculate the maximum value possible and divide by this to normalize the results.</p>
 <p>In my next post, I&rsquo;ll go through some exciting results I&rsquo;ve achieved when combining fractal noise and domain warping.</p>
-<h1 id="dynamic-fractal-noise">Dynamic fractal noise</h1>
+<h2 id="dynamic-fractal-noise">Dynamic fractal noise</h2>
 <p>This is a variation on regular fractal noise. Perhaps there is a name for this already. The idea is that the lacunarity and persistence don&rsquo;t have to be the same everywhere. With regular fractal noise, the level of detail is constant, which will make the terrain equally rough in all places. But if we vary the persistence, some areas would be more smooth and others rougher. The lacunarity could also be varied, however, this creates almost the same effect as frequency modulation (essentially, you create layers of frequency-modulated noise).</p>
 <p>Let&rsquo;s take the same code as with regular fractal noise, but introduce a scaling noise <code>S</code> which will be used to vary the persistence. We get</p>
 <pre><code>N' = (p) -&gt;
@@ -478,7 +478,7 @@
   </div>
   <script src="https://palmdrop.github.io/js/jquery.min.js"></script>
 <script src="https://palmdrop.github.io/js/jquerymigrate.js"></script>
-<script src="https://palmdrop.github.io/js/production.min.js?v=1614603999"></script>
+<script src="https://palmdrop.github.io/js/production.min.js?v=1614604292"></script>
 
 </body>
 </html>
