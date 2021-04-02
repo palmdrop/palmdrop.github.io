@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/palmdrop.github.io"
+        },
+        "articleSection" : "post",
+        "name" : "Fast weighted random point generation",
+        "headline" : "Fast weighted random point generation",
+        "description" : "\u003cp\u003eGenerating weighted random points is an essential generative tool. One might use it to generate star clusters, spawn positions, attraction points, and so on. This post will discuss how weighted random point generation can be done efficiently.\u003c\/p\u003e",
+        "inLanguage" : "en",
+        "author" : "",
+        "creator" : "",
+        "publisher": "",
+        "accountablePerson" : "",
+        "copyrightHolder" : "",
+        "copyrightYear" : "2021",
+        "datePublished": "2021-03-01 14:10:22 \u002b0100 CET",
+        "dateModified" : "2021-03-01 14:10:22 \u002b0100 CET",
+        "url" : "https:\/\/palmdrop.github.io\/post\/fast-weighted-random-points\/",
+        "wordCount" : "1999",
+        "image" : "https://palmdrop.github.ioimg/fwrp/wrp-simplex.png"",
+        "keywords" : [ ""noise"",""perlin"",""simplex"",""generative"",""procedural"",""point"",""weighted"","Blog" ]   
+    }
+    </script>
+
+
+ <title>Fast weighted random point generation </title>
+
+
+<meta name="description" content="Personal blog for sharing procedural techniques, thoughts and data experiments." />
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<link rel="stylesheet" id="ct-tracks-google-fonts-css" href="https://fonts.googleapis.com/css?family=Raleway%3A400%2C700&amp;subset=latin%2Clatin-ext&amp;ver=4.7.2" type="text/css" media="all">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<link href="https://palmdrop.github.io/css/style.css?v=1617382573" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+
+<link href="https://palmdrop.github.io/css/custom.css?v=1617382573" rel="stylesheet" type='text/css' media='all'>
+<link rel="shortcut icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
+
+
+</head>
+
+
+<body class="post-template-default single single-post single-format-standard ct-body singular singular-post not-front standard">
+
+  <div id="overflow-container" class="overflow-container">
+    <a class="skip-content" href="#main">Skip to content</a>
+    <header id="site-header" class="site-header" role="banner">
+      <div class='top-navigation'>
+        <div class='container'>
+
+  <div id="menu-secondary" class="menu-container menu-secondary" role="navigation">
+    <button id="toggle-secondary-navigation" class="toggle-secondary-navigation"><i class="fas fa-plus"></i></button>
+
+    <div class="menu">
+
+      <ul id="menu-secondary-items" class="menu-secondary-items">
+        
+        <li class="menu-item menu-item-type-taxonomy menu-item-object-category">
+          <a href="/categories/generative">generative</a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <ul class="social-media-icons">
+
+
+    
+
+    
+
+    
+
+    
+    <li>
+      <a href="https://www.instagram.com/palmdrop/" data-animate-hover="pulse" class="instagram" target="_blank">
+        <i class="fab fa-instagram" title="instagram"></i>
+        <span class="screen-reader-text">instagram</span>
+      </a>
+    </li>
+    
+
+    
+    <li>
+      <a href="mailto:anton@exlex.se" data-animate-hover="pulse" class="email">
+        <i class="fas fa-envelope" title="email"></i>
+        <span class="screen-reader-text">email</span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+
+    
+    <li>
+      <a href="https://github.com/palmdrop" data-animate-hover="pulse" class="github" target="_blank">
+        <i class="fab fa-github" title="github"></i>
+        <span class="screen-reader-text">github</span>
+      </a>
+    </li>
+    
+
+
+    
+
+    
+    <li>
+      <a href="https://palmdrop.github.io/index.xml" data-animate-hover="pulse" class="rss" target="_blank">
+        <i class="fas fa-rss" title="rss"></i>
+        <span class="screen-reader-text">rss</span>
+      </a>
+    </li>
+    
+
+
+  </ul></div>
+
+      </div>
+
+      <div class="container">
+        <div id="title-info" class="title-info">
+  <div id='site-title' class='site-title'>
+    
+    <a href="/"> Palmdrop </a>
+    </div>
+  </div>
+  <button id="toggle-navigation" class="toggle-navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <div id="menu-primary-tracks" class="menu-primary-tracks"></div>
+  <div id="menu-primary" class="menu-container menu-primary" role="navigation">
+    
+    <p class="site-description">Generative art and data experiements</p>
+    
+
+    <div class="menu">
+      <ul id="menu-primary-items" class="menu-primary-items">
+        
+        
+        <li class='menu-item menu-item-type-custom menu-item-object-custom '>
+          <a href="https://palmdrop.github.io/">Posts</a>
+          
+        </li>
+        
+        <li class='menu-item menu-item-type-post_type menu-item-object-page '>
+          <a href="https://palmdrop.github.io/about/">About</a>
+          
+        </li>
+        
+      </ul>
+    </div>
+
+  </div>
+
+      </div>
+    </header>
+
+    <div id="main" class="main" role="main">
+
+      
+  
+  
+    
+  
+  
+  <div id="loop-container" class="loop-container">
+    
+    <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
+
+      <div class='featured-image lazy lazy-bg-image'  data-background="https://palmdrop.github.io/img/fwrp/wrp-simplex.png">
+      </div>
+      
+        <div class="entry-meta">
+          
+
+		  
+
+
+          
+
+
+        </div>
+        <div class='entry-header'>
+          <h1 class='entry-title'> Fast weighted random point generation</h1>
+        </div>
+        <div class="entry-container">
+          <div class="entry-content">
+            <article>
+              <p>Generating weighted random points is an essential generative tool. One might use it to generate star clusters, spawn positions, attraction points, and so on. This post will discuss how weighted random point generation can be done efficiently.</p>
+<p>I&rsquo;ve ended up using weighted random point generation a lot in my generative explorations, mostly to generate attraction points for space-filling algorithms and spawn particles for particle systems. Below is an example of what a set of weighted random points might look like. The underlying weights are determined by simplex noise.</p>
+<p><img src="/img/fwrp/wrp-simplex.png" alt="Weighted random points using simplex noise"></p>
+<p>The algorithm generates points inside a specific area, where each position in space has a specific probability of spawning a point. Instead of a uniform distribution of points, the result will look something like the one you see above.</p>
+<p>The algorithm I will describe can also be used to generate points inside the confines of any shape, which is extremely useful if that shape is not easily defined mathematically.</p>
+<p>In this post, I&rsquo;ll discuss the following items:</p>
+<ul>
+<li>The Problem</li>
+<li>A Naïve Solution</li>
+<li>A Better Solution
+<ul>
+<li>Optimizations</li>
+</ul>
+</li>
+<li>Use cases</li>
+</ul>
+<p>Under &ldquo;A Better Solution&rdquo;, I will provide some pseudo-code and links to my implementation in my ongoing <a href="https://github.com/palmdrop/sandbox"><code>sandbox</code></a> project.</p>
+<p>&ldquo;Use cases&rdquo; will show how the technique might be applied, and showcase a few generative pieces that I&rsquo;ve created using it.</p>
+<h1 id="the-problem">The problem</h1>
+<p>In short, we want to generate a set of random points with a higher probability in certain areas and a lower probability in other areas. For this to be possible, we need some underlying probability function. Let&rsquo;s define <code>P(p)</code>, a function that takes a two-dimensional position <code>p</code> as its input and returns a value between 0.0 and 1.0 &ndash; our probability.</p>
+<p>We also need an area in which points can spawn. Say we have an area <code>A = {xMin, xMax, yMin, yMax}</code>. All points <code>p</code> will appear inside this area. The problem is this: how do we generate random points inside this area, weighted by <code>P</code>?</p>
+<h1 id="the-naïve-solution">The Naïve solution</h1>
+<p>The naïve solution to this problem is based on trial and error. We generate points uniformly and then, for each point <code>p</code>, we generate a random value <code>r</code> between 0.0 and 1.0. If this value is less than the probability of a point spawning at that position, <code>P(p)</code>, we keep the point. Otherwise, the point is discarded and we try again.</p>
+<p>This method works and might be sufficient for generating a small number of points. However, if we need many points, or if <code>P</code> frequently returns low values, we will inevitably end up having to discard a lot of points. Many failed tries mean a lot of wasted computation power. The worst case of this happens if <code>P</code> only returns non-zero values for a small sub-area. Populating this area with points would be extremely expensive.</p>
+<p>Nevertheless, here&rsquo;s some pseudo-code for this naïve solution. <code>A</code> is our range and <code>P</code> our probability function. I also assume the existence of a random function <code>random</code> which returns a value between its two input values. Finally, we also need a way of aborting the algorithm if no suitable position is found. The <code>tries</code> variable is used for this purpose.</p>
+<pre><code>Vec2 randomWeightedPoint(Area A, ProbabilityFunction P, int tries) {
+    for(int i = 0; i &lt; tries; i++) {
+        float x = random(A.minX, A.maxX);
+        float y = random(A.minY, A.maxY);
+        vec2  p = vec2(x, y);
+        float r = random(0.0, 1.0);
+
+        if(r &lt; P(p)) {
+            return p;
+        }
+    }
+    return null;
+}
+</code></pre>
+<p>The only advantage of this algorithm is that it requires no additional memory, and can generate points without restriction (as long as <code>P</code> is defined everywhere). However, it&rsquo;s slow. The improved solution has some drawbacks but ends up being A LOT faster.</p>
+<h1 id="a-better-solution">A Better Solution</h1>
+<p>This is the idea:</p>
+<p>It&rsquo;s possible to pick a random weighted element from an array. The index of an array element can be translated to a two-dimensional point. Therefore, we can construct an array of weights/probabilities, where each index corresponds to a position in space.</p>
+<p>I&rsquo;ll describe how this can be done below, along with some obvious disadvantages (such as not being able to accommodate all the (infinite) possible points inside some area).</p>
+<h3 id="weighted-random-array-access">Weighted random array access</h3>
+<p>Picking a weighted random array index is fairly easy. Say we have a <code>weights</code> array that contains floating-point values, each value indicating the probability of that index being picked. All these values should add up to some known sum, say 1.0. To randomly choose an index, we generate a random value <code>r</code> between 0.0 and 1.0. We now want to find the index which corresponds to that random value. Indexes with greater values cover a bigger &ldquo;range&rdquo; of values and are hence more likely to be picked. We can find our index by storing the running total <code>s</code>, the sum of the values at all indexes we&rsquo;ve iterated over so far. When <code>s</code> exceeds <code>r</code>, we&rsquo;ve found our index. The pseudo-code will make this more clear.</p>
+<pre><code>int randomWeightedIndex(float[] weights) {
+    float r = random(0.0, 1.0);
+    float s = 0.0;
+    for(int i = 0; i &lt; weights.length; i++) {
+        s += weights[i];
+        if(r &lt; s) return i;
+    }
+    return -1;
+}
+</code></pre>
+<p>The downside of this method is that it requires a linear search. At its worst, this might require is to search the entire array before we find our index: the algorithm has a complexity of <code>O(n)</code> where <code>n</code> is the size of the weights array.</p>
+<p>A better way of doing this is to create another array of the same length, where each element holds the running total up to that index. We can then use the same random value <code>r</code> to perform a binary search over this new array (where we search for the value closest to <code>r</code>). A binary search is a lot faster than a linear search, and would give us a complexity if <code>O(log(n))</code>.</p>
+<p>However, rebuilding this running totals array every time we want a new point is not that efficient. Therefore, let&rsquo;s create a class that saves this array and handles all the calculations necessary.</p>
+<pre><code>class WeightedRandomIndex {
+    float[] totals;
+    float sum;
+    
+    WeightedRandomIndex(float[] weights) {
+        totals = new float[weights.length];
+        sum = 0.0;
+        for(int i = 0; i &lt; weights.length; i++) {
+            sum += weights[i];
+            totals[i] = sum;
+        }
+    }
+
+    private static int binarySearch(double r, float[] totals) {
+        int min = 0;
+        int max = length;
+
+        while(min != max) {
+            int middle = (max + min) / 2;
+            double v = totals[middle];
+            if(v &gt; r) {
+                max = middle;
+            } else if(v &lt; r) {
+                min = middle + 1;
+            } else {
+                return middle;
+            }
+        }
+
+        return min;
+    }
+
+    int getIndex() {
+        float r = random(0.0, sum);
+        return binarySearch(r, totals);
+    }
+}
+</code></pre>
+<p>This class initializes a list of <code>totals</code> and a <code>sum</code>. For example, with weights of <code>{0.5, 0.3, 0.8}</code>, the list of <code>totals</code> would become <code>{0.5, 0.5 + 0.3, 0.5 + 0.3 + 0.8} = {0.5, 0.8, 1.1}</code> and the <code>sum</code> would be <code>0.5 + 0.3 + 0.8 = 1.1</code>.</p>
+<p>The <code>binarySearch</code> method is a standard binary search implementation. <a href="https://www.khanacademy.org/computing/computer-science/algorithms/binary-search/a/binary-search">This post</a> by Khan Academy describes it gracefully.</p>
+<p>Regarding weighted random array access, <a href="https://eli.thegreenplace.net/2010/01/22/weighted-random-generation-in-python">this</a> post by Eli Bendersky covers the topic well. Give it a read.</p>
+<h3 id="translating-an-index-to-a-two-dimensional-point">Translating an index to a two-dimensional point</h3>
+<p>We now know how to pick a weighted random index of an array. How can we use this to generate a two-dimensional point? One obvious method would be to have another array that holds all the points. However, it&rsquo;s quite easy to translate an index to a two-dimensional point. Much like you can convert two integer coordinates <code>x</code> and <code>y</code> to an index (as long as we know the <code>max_width</code> of the area)</p>
+<pre><code>index = x + y * max_width;
+</code></pre>
+<p>you can also go the other way around:</p>
+<pre><code>x = index % max_width;
+y = index / max_width;
+</code></pre>
+<p>(Here, <code>%</code> is the modulus operator.)</p>
+<p>Using this, the index itself represents the point. If we do not only want integer x/y values, we could scale the points to fit our desired output area. Another method, to accommodate all positions between the discrete output points, is to add a small random offset to each point.</p>
+<h3 id="generating-the-data">Generating the data</h3>
+<p>Say we have a probability function <code>P</code> and an area <code>A</code>. We now want to create a class that allows us to pick random points within the area <code>A</code>, weighted by the probability function.</p>
+<p>Let&rsquo;s create a class <code>WeightedRandomPointGenerator</code>. In the constructor, we&rsquo;ll supply the class with an area and a probability function. Internally, this class will create a one-dimensional array and use the algorithm described previously to pick weighted random indices.</p>
+<pre><code>class WeightedRandomPointGenerator {
+    float[] totals;
+    float sum;
+
+    Area A;
+    int width;
+    int height;
+
+    WeightedRandomPointGenerator(Area A, ProbabilityFunction P) {
+        this.A = A;
+        this.width = (int)(A.xMax - A.xMax);
+        this.height = (int)(A.yMax - A.yMax);
+        totals = int[width * height];
+
+        sum = 0.0;
+        for(int x = A.xMin; x &lt; A.xMax; x++) {
+            for(int y = A.yMin; y &lt; A.yMax; y++) {
+                sum += P(vec2(x, y));
+                totals[(x - A.xMin) + (y - A.yMin) * width] = sum;
+            }
+        }
+    }
+
+    vec2 getPoint() {
+        float r = random(0.0, sum);
+        int index = binarySearch(r, totals); 
+        float x = index % (A.xMax - A.xMin) + A.xMin;
+        float y = index / (A.yMax - A.yMin) + A.yMin;
+        return vec2(x, y);
+    }
+}
+</code></pre>
+<p>If we want to be able to generate values <em>between</em> the discreet points the <code>getPoint</code> function returns, we can add a small random offset to each point:</p>
+<pre><code>vec2 getPoint() {
+    float r = random(0.0, sum);
+    int index = binarySearch(r, totals);
+    float x = index % (R.xMax - R.xMin) + R.xMin;
+    float y = index / (R.yMax - R.yMin) + R.yMin;
+    return vec2(x + random(-1.0, 1.0), y + random(-1.0, 1.0));
+}
+</code></pre>
+<p>The advantage of this method is that you can initialize the class once, and then use it throughout your program at great speed. If the probability function <code>P</code> is expensive, initialization might be slow, but once initialized the class always generates points very quickly.</p>
+<p>However, the method has a few downsides. For large areas, a lot of memory is required (the array size is of <code>width * height * sizeof(int)</code>). And as mentioned, it only returns values in a fixed grid, unless a random offset is added to the points.</p>
+<p>Now, I will go through some use cases where I try to highlight the strengths of the algorithm.</p>
+<h1 id="use-cases">Use cases</h1>
+<p>This most obvious use case is to use some form of noise function, such as simplex or Perlin noise, to produce the weighted random points. This will create a varied density of points. Here are 10 000 points generated using simplex noise as a probability function.</p>
+<p><img src="/img/fwrp/simplex2.png" alt="Simplex noise">
+<img src="/img/fwrp/wrp-simplex2.png" alt="Weighted random points using simplex noise"></p>
+<p>A second use case might be to generate points inside an arbitrary shape.</p>
+<p><img src="/img/fwrp/shape.png" alt="Arbitrary shape">
+<img src="/img/fwrp/wrp-shape.png" alt="Weighted random points using arbitrary shape"></p>
+<p>and&hellip;</p>
+<p><img src="/img/fwrp/text.png" alt="Text">
+<img src="/img/fwrp/wrp-text.png" alt="Weighted random points using text"></p>
+<p>The text example would be extremely expensive to accomplish using the naïve method. Since there&rsquo;s a lot of space where the probability of spawning a point is zero, and very little space where a point can spawn, we&rsquo;d end up doing <em>a lot</em> of failed attempts before finding a point to spawn.</p>
+<p>I&rsquo;d also like to mention that any image or renderable scene can be converted to a probability function. Simply render to a framebuffer or graphics object, then choose some criteria of each pixel to determine the probability. The most intuitive way is to take the brightness &ndash; a bright pixel will be more likely to spawn a point than a dark pixel. Here&rsquo;s an example:</p>
+<p><img src="/img/fwrp/mountains.png" alt="Mountains image">
+<img src="/img/fwrp/wrp-mountains.png" alt="Weighted random points using mountains image"></p>
+<p>I&rsquo;ve been using this technique extensively in my most recent generative pieces. Weighted random points created using modified noise acts as attraction points for a space colonization algorithm. The result of the space-filling algorithm is rendered, and the render is then converted to another probability function. This probability function is used to spawn particles that move in a flow field (which is also determined using the render space colonization algorithm). I might make a complete blog post explaining this process in the future. Until then, here are some samples.</p>
+<p><img src="/img/fwrp/weaved-structure1.jpg" alt="Generative weave 1"></p>
+<p><img src="/img/fwrp/weaved-structure2.png" alt="Generative weave 2"></p>
+<p><img src="/img/fwrp/weaved-structure3.png" alt="Generative weave 3"></p>
+<p>If interested, you&rsquo;ll find more at my <a href="https://www.instagram.com/palmdrop/">instagram</a>.</p>
+<p>Stay tuned and stay inside.</p>
+            </article>
+          </div>
+          
+      <div class='entry-meta-bottom'>
+        
+
+  <div class="entry-categories"><p><span>Categories</span>
+    
+    <a href="/categories/generative" title="View all posts in Generative">Generative</a>
+  </p>
+</div>
+
+
+
+<div class="entry-tags"><p><span>Tags</span>
+  
+  <a href="/tags/noise" title="View all posts tagged noise">noise</a>
+  
+  <a href="/tags/perlin" title="View all posts tagged perlin">perlin</a>
+  
+  <a href="/tags/simplex" title="View all posts tagged simplex">simplex</a>
+  
+  <a href="/tags/generative" title="View all posts tagged generative">generative</a>
+  
+  <a href="/tags/procedural" title="View all posts tagged procedural">procedural</a>
+  
+  <a href="/tags/point" title="View all posts tagged point">point</a>
+  
+  <a href="/tags/weighted" title="View all posts tagged weighted">weighted</a>
+  
+
+</p></div>	</div>
+
+	
+</div>
+</div>
+
+<section id="comments" class="comments">
+  
+
+  
+
+
+
+
+</section>
+</div>
+
+ 
+
+
+
+    </div>
+
+    <footer id="site-footer" class="site-footer" role="contentinfo">
+	<h1>
+    
+    <a href=""> Palmdrop </a>
+    
+	</h1>
+
+			
+			<p class="site-description">Generative art and data experiements</p>
+			
+
+		<div id="menu-footer" class="menu-container menu-footer" role="navigation">
+		<div class="menu">
+
+      <ul id="menu-footer-items" class="menu-footer-items">
+        
+</ul>
+
+</div>	</div>
+
+<ul class="social-media-icons">
+
+        
+
+        
+
+
+        
+
+        
+        <li>
+        <a href="https://www.instagram.com/palmdrop/"  class="instagram" target="_blank">
+            <i class="fab fa-instagram" title="instagram"></i>
+            <span class="screen-reader-text">instagram</span>
+        </a>
+        </li>
+        
+
+        
+        <li>
+        <a href="mailto:anton@exlex.se"  class="email">
+            <i class="fas fa-envelope" title="email"></i>
+            <span class="screen-reader-text">email</span>
+        </a>
+        </li>
+        
+
+        
+
+        
+
+
+        
+        <li>
+        <a href="https://github.com/palmdrop"  class="github" target="_blank">
+            <i class="fab fa-github" title="github"></i>
+            <span class="screen-reader-text">github</span>
+        </a>
+        </li>
+        
+
+
+        
+
+        
+        <li>
+        <a href="https://palmdrop.github.io/index.xml" data-animate-hover="pulse" class="rss" target="_blank">
+            <i class="fas fa-rss" title="rss"></i>
+            <span class="screen-reader-text">rss</span>
+        </a>
+        </li>
+        
+
+        
+	</div>
+</footer>
+
+  </div>
+  <script src="https://palmdrop.github.io/js/jquery.min.js"></script>
+<script src="https://palmdrop.github.io/js/jquerymigrate.js"></script>
+<script src="https://palmdrop.github.io/js/production.min.js?v=1617382573"></script>
+
+</body>
+</html>

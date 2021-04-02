@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>weighted on Palmdrop</title>
+    <link>https://palmdrop.github.io/tags/weighted/</link>
+    <description>Recent content in weighted on Palmdrop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Mar 2021 14:10:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/tags/weighted/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fast weighted random point generation</title>
+      <link>https://palmdrop.github.io/post/fast-weighted-random-points/</link>
+      <pubDate>Mon, 01 Mar 2021 14:10:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/fast-weighted-random-points/</guid>
+      <description>&lt;p&gt;Generating weighted random points is an essential generative tool. One might use it to generate star clusters, spawn positions, attraction points, and so on. This post will discuss how weighted random point generation can be done efficiently.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

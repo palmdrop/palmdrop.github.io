@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>Fast weighted random point generation</title>
+      <link>https://palmdrop.github.io/post/fast-weighted-random-points/</link>
+      <pubDate>Mon, 01 Mar 2021 14:10:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/fast-weighted-random-points/</guid>
+      <description>&lt;p&gt;Generating weighted random points is an essential generative tool. One might use it to generate star clusters, spawn positions, attraction points, and so on. This post will discuss how weighted random point generation can be done efficiently.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>The Characteristics of Modified Noise</title>
       <link>https://palmdrop.github.io/post/characteristics-of-modified-noise/</link>
       <pubDate>Fri, 05 Feb 2021 20:12:22 +0100</pubDate>
