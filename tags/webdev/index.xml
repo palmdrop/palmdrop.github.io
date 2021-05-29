@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>webdev on Palmdrop</title>
+    <link>https://palmdrop.github.io/tags/webdev/</link>
+    <description>Recent content in webdev on Palmdrop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Mar 2021 14:10:22 +0100</lastBuildDate><atom:link href="https://palmdrop.github.io/tags/webdev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Surfaces - A Recursive Domain Warping Controller</title>
+      <link>https://palmdrop.github.io/post/surfaces/</link>
+      <pubDate>Mon, 01 Mar 2021 14:10:22 +0100</pubDate>
+      
+      <guid>https://palmdrop.github.io/post/surfaces/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
