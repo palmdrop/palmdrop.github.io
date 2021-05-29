@@ -13,7 +13,7 @@
         "articleSection" : "post",
         "name" : "Surfaces - A Recursive Domain Warping Controller",
         "headline" : "Surfaces - A Recursive Domain Warping Controller",
-        "description" : "",
+        "description" : "\u003cp\u003eOver the last few months, I\u0026rsquo;ve been developing a web application that provides easy access to the recursive domain warping technique described in previous posts. This app is now live at \u003ca href=\u0022https:\/\/palmdrop.github.io\/surfaces\/\u0022\u003ehttps:\/\/palmdrop.github.io\/surfaces\/\u003c\/a\u003e.\u003c\/p\u003e",
         "inLanguage" : "en",
         "author" : "",
         "creator" : "",
@@ -24,8 +24,8 @@
         "datePublished": "2021-03-01 14:10:22 \u002b0100 CET",
         "dateModified" : "2021-03-01 14:10:22 \u002b0100 CET",
         "url" : "https:\/\/palmdrop.github.io\/post\/surfaces\/",
-        "wordCount" : "182",
-        "image" : "https://palmdrop.github.ioimg/fwrp/wrp-simplex.png"",
+        "wordCount" : "1001",
+        "image" : "https://palmdrop.github.ioimg/surfaces/bulbs1.png"",
         "keywords" : [ ""noise"",""perlin"",""simplex"",""generative"",""domain warping"",""procedural"",""webdev"",""react"",""glsl"",""webgl"","Blog" ]   
     }
     </script>
@@ -45,9 +45,9 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<link href="https://palmdrop.github.io/css/style.css?v=1622280526" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
+<link href="https://palmdrop.github.io/css/style.css?v=1622299754" rel="stylesheet" id="theme-stylesheet" type='text/css' media='all'>
 
-<link href="https://palmdrop.github.io/css/custom.css?v=1622280526" rel="stylesheet" type='text/css' media='all'>
+<link href="https://palmdrop.github.io/css/custom.css?v=1622299754" rel="stylesheet" type='text/css' media='all'>
 <link rel="shortcut icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="https://palmdrop.github.io/img/favicon.ico" type="image/x-icon">
 
@@ -200,7 +200,7 @@
     
     <div class="post type-post status-publish format-standard has-post-thumbnail hentry category-design tag-design tag-standard-2 tag-tagalicious tag-travel entry full-without-featured odd excerpt-1">
 
-      <div class='featured-image lazy lazy-bg-image'  data-background="https://palmdrop.github.io/img/fwrp/wrp-simplex.png">
+      <div class='featured-image lazy lazy-bg-image'  data-background="https://palmdrop.github.io/img/surfaces/bulbs1.png">
       </div>
       
         <div class="entry-meta">
@@ -219,85 +219,43 @@
         <div class="entry-container">
           <div class="entry-content">
             <article>
-              <p>DISPOSITION</p>
-<ol>
-<li>Present app
+              <p>Over the last few months, I&rsquo;ve been developing a web application that provides easy access to the recursive domain warping technique described in previous posts. This app is now live at <a href="https://palmdrop.github.io/surfaces/">https://palmdrop.github.io/surfaces/</a>.</p>
+<p>It all took me longer than I&rsquo;d like to admit. A lot of time had to be spent learning WebGL and React, and trying out different approaches. But the web app, <em>Surfaces</em>, is now polished enough to exist on the web. <em>Surfaces</em> consists of a few GLSL shaders and a user interface. The most important shader implements recursive domain warping using Simplex noise. The user interface is simply a set of sliders for controlling various shader parameters.</p>
+<p>If you have not read <a href="https://palmdrop.github.io/post/domain-warping/">my post about domain warping</a> and <a href="https://palmdrop.github.io/post/alien-patterns/">the things you can do with it</a>, I suggest doing so before you continue reading.</p>
+<p>In this post, I will discuss</p>
 <ul>
-<li>&ldquo;I&rsquo;ve been developing&hellip;&rdquo;</li>
-<li>Web interface for recursive domain warping</li>
-<li>link to previous posts</li>
-<li>showcase UI, renders, etc</li>
+<li>The purpose of Surfaces</li>
+<li>Functionality</li>
+<li>Usage</li>
+<li>Next Steps</li>
 </ul>
-</li>
-<li>Purpose
-<ul>
-<li>learn WebGL, GLSL, React</li>
-<li>build user interfaces</li>
-<li>fast generation, real time, easy to change settings, colors, etc</li>
-</ul>
-</li>
-<li>Functionality
-<ul>
-<li>&ldquo;Divided into three main sections&hellip;&rdquo;</li>
-<li>Texture
-<ul>
-<li>Warp effect (amount, iterations, etc)
-<ul>
-<li>three controllers</li>
-</ul>
-</li>
-<li>Noise controllers
-<ul>
-<li>fractal noise! (link to post)</li>
-<li>modified noise (link to post)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Color
-<ul>
-<li>general settings</li>
-<li>controllers for deciding influence of each layer
-<ul>
-<li>describe mult vs add</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Render
-<ul>
-<li>general render settings</li>
-<li>blue noise for dithering (link to post)
-<ul>
-<li>problem with webgl1, implementation needs floating point textures</li>
-<li>other soltuions, like having separate render passes for each layer&hellip; didn&rsquo;t like that, although might try</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Usage
-<ul>
-<li>load app, play around with the sliders.</li>
-<li>suggested workflow (randomize until you find something, then play with sliders)</li>
-<li>save image or video</li>
-<li>feel free to post wherever, but include link</li>
-</ul>
-</li>
-<li>Goals/Aspirations
-<ul>
-<li>build on this app, solve issues, keep doing web development</li>
-<li>ideas about more conceptual projects</li>
-</ul>
-</li>
-<li>Final words (call to action)
-<ul>
-<li>try it out. Post your findings. Link to this post</li>
-<li>word about generative art should be accessible?</li>
-</ul>
-</li>
-</ol>
+<p>But first, below are some screenshots of the user interface and a few renders. More images can be found in <a href="https://github.com/palmdrop/webgl-domain-warping-controller/tree/main/img/example">the repository</a>.</p>
+<p><img src="/img/surfaces/interface1.png" alt="Interface 1">
+<img src="/img/surfaces/interface2.png" alt="Interface 1">
+<img src="/img/surfaces/islands-1.png" alt="Render 1">
+<img src="/img/surfaces/paths2.png" alt="Render 2"></p>
+<h2 id="purpose">Purpose</h2>
+<p>Initially, the purpose of developing this application was to learn WebGL, GLSL, and React. However, I also wanted to explore real-time rendering more. My previous projects have mostly been rendering on the CPU, which in some cases is extremely slow. Waiting for a slow render is not only boring but makes exploring different configurations difficult. Similarly, not having a user interface makes explorations a bit more cumbersome. Each time, one has to delve into the code and make the edits there, then compile and render, to see the result. Having a rigid user interface is limiting, but makes trying out different settings extremely easy.</p>
+<p>Also, while working on the project I got more and more motivated to create a complete application that could be used not just by me, but by anyone. <em>Surfaces</em> is now fully functional, and will hopefully be an effective illustration of the generative techniques I&rsquo;ve been working with for a long time.</p>
+<h2 id="functionality">Functionality</h2>
+<p>The user interface is divided into three main categories. <em>Texture</em>, <em>Color</em>, and <em>Render</em>.</p>
+<p><em>Texture</em> is settings for controlling the actual domain warping effect. The names of the sliders should correspond to the concepts discussed in my previous posts.</p>
+<p>In this category, there are three noise controllers: <em>source</em>, <em>angle control</em>, and <em>amount control</em>. These are all settings for fractal simplex noise, and are used for the domain warping effect. Each controller has a set of modifications that can be applied. All of these are mentioned in <a href="https://palmdrop.github.io/post/characteristics-of-modified-noise/">my post about modified noise</a>.</p>
+<p><em>Color</em> provides both basic and obscure color settings. There are sliders for hue shift, saturation, brightness, red, green, and blue.  There are also three additional <em>controllers</em>, that provide more precise control over how the hue, saturation, and brightness of each pixel are determined. Each one of these controllers has sliders for the three layers from the <em>Texture</em> category: <em>source</em>, <em>angle</em>, and <em>amount</em>. The value of these sliders determines <em>how much influence</em> each noise layer has over that aspect of the final color.</p>
+<p>For example, if the <em>brightness controller</em> has values set to <code>source = 0.5</code>, <code>angle = 0.0</code> and <code>amount = -0.2</code>, then the value of the source noise will increase brightness, the angle noise will have no influence, and the amount noise will have a negative influence.</p>
+<p>There&rsquo;s also an option to multiply the values from the noise functions, instead of summing them together.</p>
+<p>Finally, the <em>Render</em> category controls resolution, multisampling, and dithering amount. To reduce banding, blue noise was used for dithering. <a href="http://momentsingraphics.de/BlueNoise.html">This blog post</a> describes blue noise extremely well and provides links to where free-to-use blue noise textures can be found.</p>
+<p>If you use a browser that does not support WebGL2, the banding might, unfortunately, be quite noticeable. This is because WebGL1 does not have support for rendering to floating-point color buffers. Using floating-point color buffers allowed me to render the three noise functions (source, angle, amount) to three separate color channels in a texture. Another shader then samples this texture and uses the color settings to create the final color. However, without support for renderable floating-point color buffers, precision will be reduced drastically. The dithering helps alleviate this (although dithering is pretty much always worth doing, regardless of precision).</p>
+<h2 id="usage">Usage</h2>
+<p>Click and drag with the mouse to move around, or use the arrow keys. Scroll to zoom in and out. Press space to pause. Additional shortcuts are available &ndash; press the &ldquo;?&rdquo; button for more information.</p>
+<p>All the various settings might be overwhelming at first. I suggest working through the main categories in order: first, create the <em>texture</em> you like, then do the <em>colors</em>, and finally, change the <em>render</em> settings to ensure sufficient quality. When done, press <em>record</em> or <em>capture frame</em> to save a video (the &ldquo;video&rdquo;, at this moment, is unfortunately just a zipped archive of PNGs) or image. If you want to save your configuration, press <em>export</em>. This will create a JSON file which you can later <em>import</em> to pick up where you left off.</p>
+<p>Another possible workflow is to press the <em>randomize</em> button until you find something you enjoy. Then, using that as a base, tweak the settings to your liking.</p>
+<p>Feel free to post the images you generate wherever you wish. However, do include a link to this blog post, the <em>surfaces</em> app, or the <a href="https://github.com/palmdrop/webgl-domain-warping-controller">repository</a>, if you do.</p>
+<p>At this moment, the user interface is not adapted for phone usage. And the canvas and shaders might not work properly on all mobile devices. However, the application should function on all major browsers. If you experience any issues, <a href="mailto:anton@exlex.se">contact me</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<p>I have some ideas of possible extensions to the application. For example, implement the option of using images instead of noise functions, and to modify the noise using math functions, like <code>sin</code> and <code>cos</code>.</p>
+<p>However, I&rsquo;ve been working with this technique for a long time now, and I&rsquo;m looking to explore other things. Hopefully, I&rsquo;ll be able to find the time to share those explorations here as well.</p>
+<p>Enjoy <a href="https://palmdrop.github.io/surfaces/"><em>SURFACES</em></a>. Stay safe.</p>
             </article>
           </div>
           
@@ -439,7 +397,7 @@
   </div>
   <script src="https://palmdrop.github.io/js/jquery.min.js"></script>
 <script src="https://palmdrop.github.io/js/jquerymigrate.js"></script>
-<script src="https://palmdrop.github.io/js/production.min.js?v=1622280526"></script>
+<script src="https://palmdrop.github.io/js/production.min.js?v=1622299754"></script>
 
 </body>
 </html>

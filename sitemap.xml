@@ -8,6 +8,9 @@
     <loc>https://palmdrop.github.io/post/fast-weighted-random-points/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
+    <loc>https://palmdrop.github.io/post/surfaces/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
     <loc>https://palmdrop.github.io/post/characteristics-of-modified-noise/</loc>
     <lastmod>2021-02-05T20:12:22+01:00</lastmod>
   </url><url>
@@ -17,10 +20,16 @@
     <loc>https://palmdrop.github.io/categories/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
+    <loc>https://palmdrop.github.io/tags/domain-warping/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
     <loc>https://palmdrop.github.io/categories/generative/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
     <loc>https://palmdrop.github.io/tags/generative/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
+    <loc>https://palmdrop.github.io/tags/glsl/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
     <loc>https://palmdrop.github.io/tags/noise/</loc>
@@ -41,17 +50,26 @@
     <loc>https://palmdrop.github.io/tags/procedural/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
+    <loc>https://palmdrop.github.io/tags/react/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
     <loc>https://palmdrop.github.io/tags/simplex/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
     <loc>https://palmdrop.github.io/tags/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
-    <loc>https://palmdrop.github.io/tags/weighted/</loc>
+    <loc>https://palmdrop.github.io/categories/webdev/</loc>
     <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
-    <loc>https://palmdrop.github.io/tags/domain-warping/</loc>
-    <lastmod>2021-01-24T18:25:22+01:00</lastmod>
+    <loc>https://palmdrop.github.io/tags/webdev/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
+    <loc>https://palmdrop.github.io/tags/webgl/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
+  </url><url>
+    <loc>https://palmdrop.github.io/tags/weighted/</loc>
+    <lastmod>2021-03-01T14:10:22+01:00</lastmod>
   </url><url>
     <loc>https://palmdrop.github.io/tags/graphics/</loc>
     <lastmod>2021-01-24T18:25:22+01:00</lastmod>
