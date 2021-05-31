@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/surfaces/static/css/main.31ccc373.chunk.css",
-    "main.js": "/surfaces/static/js/main.b9292b35.chunk.js",
-    "main.js.map": "/surfaces/static/js/main.b9292b35.chunk.js.map",
+    "main.css": "/surfaces/static/css/main.328f645f.chunk.css",
+    "main.js": "/surfaces/static/js/main.3b025a5d.chunk.js",
+    "main.js.map": "/surfaces/static/js/main.3b025a5d.chunk.js.map",
     "runtime-main.js": "/surfaces/static/js/runtime-main.26654ce3.js",
     "runtime-main.js.map": "/surfaces/static/js/runtime-main.26654ce3.js.map",
     "static/js/2.e9013198.chunk.js": "/surfaces/static/js/2.e9013198.chunk.js",
     "static/js/2.e9013198.chunk.js.map": "/surfaces/static/js/2.e9013198.chunk.js.map",
     "index.html": "/surfaces/index.html",
-    "static/css/main.31ccc373.chunk.css.map": "/surfaces/static/css/main.31ccc373.chunk.css.map",
+    "static/css/main.328f645f.chunk.css.map": "/surfaces/static/css/main.328f645f.chunk.css.map",
     "static/js/2.e9013198.chunk.js.LICENSE.txt": "/surfaces/static/js/2.e9013198.chunk.js.LICENSE.txt",
     "static/media/LDR_RGBA_7.0ec5ab28.png": "/surfaces/static/media/LDR_RGBA_7.0ec5ab28.png",
     "static/media/blog.9376783d.svg": "/surfaces/static/media/blog.9376783d.svg",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.26654ce3.js",
     "static/js/2.e9013198.chunk.js",
-    "static/css/main.31ccc373.chunk.css",
-    "static/js/main.b9292b35.chunk.js"
+    "static/css/main.328f645f.chunk.css",
+    "static/js/main.3b025a5d.chunk.js"
   ]
 }
