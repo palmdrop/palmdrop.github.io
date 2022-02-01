@@ -1,0 +1,289 @@
+@import './theme.scss';
+@import './layout.scss';
+
+// Fonts
+/* Syne */
+/* Credit: https://gitlab.com/bonjour-monde/fonderie/syne-typeface */
+@font-face {
+  font-family: 'SyneRegular';
+  src: url('../fonts/syne/Syne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneBold';
+  src: url('../fonts/syne/Syne-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneExtraBold';
+  src: url('../fonts/syne/Syne-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneItalic';
+  src: url('../fonts/syne/Syne-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneMono';
+  src: url('../fonts/syne/SyneMono-Regular.ttf') format('truetype');
+}
+
+// Basic settings
+body {
+  @include fluid-type( $grow-start-width, $grow-stop-width, $min-font-size, $max-font-size );
+
+  color: $cFont-dark;
+
+  overflow-x: hidden;
+}
+
+* {
+  // border: 1px solid red;
+  padding: 0em;
+  margin: 0em;
+  list-style-type: none;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+// Classes
+.disk-background {
+  background-color: $cPrimary;
+  color: $cFont-bright;
+  border-radius: 100%;
+}
+
+
+// Page styles
+header {
+  @include fluid-headings( 0.67 );
+
+  border: 1px solid $cBorder;
+  padding: 1em 0em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    @include font( 'heading' );
+    text-align: center;
+    text-transform: uppercase;
+
+    color: $cFont-dark;
+  }
+
+  div {
+    @include font( 'subheading' );
+    text-transform: uppercase;
+    text-align: right;
+
+    width: 1025px;
+    max-width: 93vw;
+  }
+}
+
+main {
+  padding-top: 1em;
+  padding-bottom: 50vh;
+
+  @include font( 'normal' );
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    li {
+      padding: 1em;
+      margin: 2px 0em;
+
+      width: clamp(200px, 80vw, 800px);
+      border: 1px solid $cBorder;
+
+      a {
+
+        h2 {
+          text-decoration: underline;
+        }
+
+        p {
+          color: $cFont-subtle;
+        }
+      }
+    }
+  }
+
+  .afterword {
+    text-align: center;
+    padding: 0.5em 0em;
+    color: $cFont-bleak;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100vw;
+  padding: 0.3em 0em;
+  border: 1px solid $cBorder;
+  background-color: $cBackground;
+  z-index: 1;
+
+  @include font( 'accent' );
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+    li {
+      margin: 0em 0.5em;
+      padding: 0.3em 0em;
+
+      a {
+        width: 33%;
+        max-width: 130px;
+        padding: 0em 1em;
+
+        text-align: center;
+
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  .info {
+    width: 15%;
+    text-align: center;
+
+    padding: 0em 1em;
+
+    font-size: 0.7em;
+    color: $cFont-subtle;
+  }
+}
+
+.lawn {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+
+  width: 100vw;
+  max-width: 1100px;
+
+  transform: translate( -50%, 0 );
+
+  z-index: 0;
+
+  img {
+    position: absolute;
+    bottom: 0;
+
+    width: auto;
+    height: 100vh;
+    max-height: 1200px;
+
+    transition: 2s;
+    transition-timing-function: ease-in-out;
+
+    pointer-events: auto;
+
+    &:nth-child(1) {
+      left: 0;
+      transform: 
+        scale( 1.0 )
+        rotate( -5deg );
+    
+      &:hover {
+        transform: 
+          scale( 1.0 )
+          rotate( -0deg )
+          translate( 0, 1% );
+      }
+    }
+
+    &:nth-child(2) {
+      left: 0;
+      transform: 
+        translate( 20%, 15% )
+        scale( -0.7, 0.7 )
+        rotate( -6deg );
+
+      &:hover {
+        transform: 
+          translate( 20%, 16% )
+          scale( -0.7, 0.7 )
+          rotate( -3deg )
+      }
+    }
+
+    &:nth-child(3) {
+      left: 50%;
+      transform: 
+        translate( -50%, 25% )
+        scale( -0.5, 0.5 )
+        rotate( -4deg );
+
+      &:hover {
+        transform: 
+          translate( -50%, 26% )
+          scale( -0.4, 0.5 )
+          rotate( 3deg )
+      }
+    }
+
+    &:nth-child(4) {
+      right: 0;
+      transform: 
+        translate( -30%, 0% )
+        scale( -0.9, 1.1 )
+        rotate( -2deg );
+      
+      &:hover { 
+        transform: 
+          translate( -30%, 0% )
+          scale( -0.9, 1.2 )
+          rotate( -8deg );
+      }
+    }
+    &:nth-child(5) {
+      right: 0;
+      transform: 
+        translate( -50%, 18% )
+        scale( -0.9, 0.7 )
+        rotate( -10deg );
+      
+      &:hover {
+        transform: 
+          translate( -50%, 20% )
+          scale( -0.8, 0.7 )
+          rotate( -4deg );
+      }
+    }
+    &:nth-child(6) {
+      right: 0;
+      transform: 
+        translate( -60%, 8% )
+        scale( 0.9, 1.0 )
+        rotate( -10deg ); 
+
+      &:hover {
+        transform: 
+          translate( -60%, 10% )
+          scale( 0.9, 1.0 )
+          rotate( -5deg )
+      }
+    }
+  }
+
+}
