@@ -309,7 +309,7 @@ footer .info {
   position: absolute;
   bottom: 0;
   width: auto;
-  height: 100vh;
+  height: calc(min(100vh, 120vw));
   max-height: 1200px;
   -webkit-transition: 2s;
   transition: 2s;
