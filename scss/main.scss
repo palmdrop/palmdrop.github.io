@@ -61,7 +61,8 @@ header {
   @include fluid-headings( 0.67 );
 
   border: 1px solid $cBorder;
-  padding: 1em 0em;
+  padding-top: 1.0em;
+  padding-bottom: 0.5em;
 
   display: flex;
   flex-direction: column;
@@ -75,10 +76,11 @@ header {
     color: $cFont-dark;
   }
 
-  div {
+  p {
     @include font( 'subheading' );
     text-transform: uppercase;
     text-align: right;
+    font-size: 0.9em;
 
     width: 1025px;
     max-width: 93vw;
@@ -99,13 +101,18 @@ main {
 
     li {
       padding: 1em;
-      margin: 2px 0em;
+      margin: 5px 0em;
 
       width: clamp(200px, 80vw, 800px);
       border: 1px solid $cBorder;
 
-      a {
+      transition: 0.5s;
 
+      &:hover {
+        transform: scale( 1.03 );
+      }
+
+      a {
         h2 {
           text-decoration: underline;
         }
@@ -129,8 +136,12 @@ footer {
   bottom: 0;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+
+  @include small {
+    flex-direction: row;
+  }
 
   width: 100vw;
   padding: 0.3em 0em;
@@ -150,14 +161,27 @@ footer {
       margin: 0em 0.5em;
       padding: 0.3em 0em;
 
+      transition: 0.5s;
+
+      &:hover {
+        transform: scale( 1.05 );
+      }
+
       a {
         width: 33%;
         max-width: 130px;
-        padding: 0em 1em;
+        padding: 0em 1.0em;
 
         text-align: center;
-
         font-size: 0.9em;
+
+        @include small {
+          padding: 0em 0.5em;
+        }
+
+        @include medium {
+          padding: 0em 1.0em;
+        }
       }
     }
   }
@@ -166,10 +190,18 @@ footer {
     width: 15%;
     text-align: center;
 
-    padding: 0em 1em;
+    padding: 0.2em 1.0em;
 
     font-size: 0.7em;
     color: $cFont-subtle;
+
+    &:nth-child(3) {
+      display: none;
+
+      @include small {
+        display: block;
+      }
+    }
   }
 }
 
