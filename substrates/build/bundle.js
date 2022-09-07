@@ -196,7 +196,7 @@ var app=function(){"use strict";function e(){}const t=e=>e;function n(e){return 
     vec2 size = vec2(w, h);
 
     float d = length(max(abs(point.xy - pos) - size, 0.0)) - radius;
-    d = smoothstep(0.0, 1.0, pow(d, softness));
+    d = smoothstep(0.0, 1.0, pow(clamp(d, 0.0, 1.0), max(softness, 0.0001)));
 
     return mix(insideBrightness, outsideBrightness, d);
   `},lh={name:"static",returnType:"float",group:"generator",fields:{point:{kind:"dynamic",type:"vec3",value:new Ft,internalOptional:!0},min:{kind:"dynamic",type:"float",value:0,min:0,max:1},max:{kind:"dynamic",type:"float",value:1,min:0,max:1}},glsl:jc`
