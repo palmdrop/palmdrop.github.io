@@ -88,7 +88,6 @@ header {
 }
 
 main {
-  padding-top: 1em;
   padding-bottom: 50vh;
 
   @include font( 'normal' );
@@ -100,34 +99,38 @@ main {
     align-items: center;
 
     li {
-      padding: 1em;
-      margin: 5px 0em;
+      width: 100%;
 
-      width: clamp(200px, 80vw, 800px);
+      padding: 1.5em 5.5em;
       border: 1px solid $cBorder;
+      width: clamp(200px, 80vw, 800px);
 
       transition: 0.5s;
 
       &:hover {
-        transform: scale( 1.03 );
+        a h2 {
+          text-decoration: underline;
+        }
       }
 
       a {
         h2 {
-          text-decoration: underline;
+          @include font( 'subheading' );
         }
 
         p {
           color: $cFont-subtle;
         }
       }
-    }
-  }
 
-  .afterword {
-    text-align: center;
-    padding: 0.5em 0em;
-    color: $cFont-bleak;
+      &:not(:last-of-type) {
+        border-bottom: unset;
+      }
+
+      &:first-of-type {
+        border-top: unset;
+      }
+    }
   }
 }
 
