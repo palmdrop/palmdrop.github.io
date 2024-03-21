@@ -1,0 +1,4 @@
+[submodule "modules/goo-poem"]
+	path = modules/goo-poem
+	url = https://github.com/palmdrop/goo-poem
+	branch = main
