@@ -166,6 +166,25 @@ a:hover > h2::before {
   padding: 0.2em 1em;
 }
 
+li {
+  position: relative;
+}
+
+img {
+  width: 300px;
+  height: calc(100% + 1px);
+
+  object-fit: cover;
+
+  border: var(--border);
+
+  position: absolute;
+  top: 0em;
+  right: 1em;
+
+  z-index: 1;
+}
+
 @keyframes accent-flash {
   0% {
     color: var(--fg);
