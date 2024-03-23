@@ -112,6 +112,11 @@ h2::before {
   color: var(--accent);
 }
 
+a:hover > h2 {
+  text-shadow: 0px 0px 5px var(--fg);
+  padding-right: 0.2em;
+}
+
 a:hover > h2::after {
   transform: rotateZ(20deg);
   text-shadow: 0px 0px 5px var(--accent);
@@ -126,6 +131,11 @@ a:hover > h2::before {
   color: var(--fg);
 }
 
+.elsewhere-links a {
+  transition: var(--hover-animation-speed);
+  text-shadow: 0px 0px 0px var(--fg);
+}
+
 .elsewhere-links a::before {
   content: "⤵";
   display: inline-block;
@@ -137,11 +147,13 @@ a:hover > h2::before {
 
 .elsewhere-links a:hover::before {
   animation: accent-flash var(--hover-animation-speed);
+  text-shadow: 2px 2px 3px var(--fg);
+  padding-right: 0.2em;
 }
 
 .elsewhere-links a:hover {
   animation: accent-flash var(--hover-animation-speed);
-  text-shadow: 0px 0px 0px var(--fg);
+  text-shadow: 0px 0px 3px var(--fg);
 }
 
 .info {
