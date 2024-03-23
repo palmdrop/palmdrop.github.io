@@ -1,0 +1,26 @@
+/* SYNE */
+/* Credit: https://gitlab.com/bonjour-monde/fonderie/syne-typeface */
+@font-face {
+  font-family: 'SyneItalic';
+  src: url('/assets/fonts/syne/Syne-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneRegular';
+  src: url('/assets/fonts/syne/Syne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneMono-Regular';
+  src: url('/assets/fonts/syne/SyneMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneTactile-Regular';
+  src: url('/assets/fonts/syne/SyneTactile-Regular.ttf') format('truetype');
+}
+  
+@font-face {
+  font-family: 'SyneMono';
+  src: url('/assets/fonts/syne/SyneMono-Regular.ttf') format('truetype');
+}
