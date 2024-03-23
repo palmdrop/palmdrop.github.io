@@ -2,9 +2,7 @@
   --fg: rgb(23, 23, 23);
   --bg: rgb(207, 207, 207);
 
-  --gray1: rgb(207, 208, 205);
-  --gray2: rgb(167, 168, 164);
-  --gray3: rgb(97, 97, 96);
+  --accent: rgb(0, 64, 255);
 
   --border: 1px solid var(--gray2);
   --text-shadow: 0px 0px 2px var(--fg);
@@ -14,7 +12,7 @@
   --font-family-headings: SyneMono, serif;
   --font-family: SyneMono, sans-serif;
 
-  --hover-transform: translate(0.05em, -0.08em);
+  --hover-animation-speed: 0.4s;
 }
 
 html {
@@ -75,17 +73,15 @@ h2 {
   transition: 1.0s;
 }
 
-a:hover > h2 {
-  transform: var(--hover-transform);
-}
-
 h2 {
+  position: relative;
   font-size: 1.0em;
   padding-bottom: 0.25em;
   text-transform: uppercase;
   font-style: italic;
 
   text-shadow: var(--text-shadow);
+  display: inline-block;
 }
 
 h1, h2 {
@@ -98,11 +94,34 @@ h2::after {
   font-size: 0.8em;
   text-shadow: 0px 0px 2px var(--fg);
 
-  transition: 0.8s;
+  transition: calc(var(--hover-animation-speed) * 0.5);
+}
+
+h2::before {
+  content: "⟶";
+  position: absolute;
+  top: -0.1em;
+  right: 0;
+  opacity: 0;
+
+  transition: var(--hover-animation-speed);
+  text-shadow: 0px 0px 5px var(--accent);
+  transform: rotate(-10deg);
+  color: var(--accent);
 }
 
 a:hover > h2::after {
   transform: rotateZ(20deg);
+  text-shadow: 0px 0px 5px var(--accent);
+  opacity: 0;
+  color: var(--accent);
+}
+
+a:hover > h2::before {
+  opacity: 1;
+  text-shadow: 0px 0px 2px var(--fg);
+  transform: rotate(0deg);
+  color: var(--fg);
 }
 
 .elsewhere-links a::before {
@@ -115,10 +134,13 @@ a:hover > h2::after {
 }
 
 .elsewhere-links a:hover::before {
-  transform: rotateZ(20deg);
-  padding-right: 0.5em;
+  animation: accent-flash var(--hover-animation-speed);
 }
 
+.elsewhere-links a:hover {
+  animation: accent-flash var(--hover-animation-speed);
+  text-shadow: 0px 0px 0px var(--fg);
+}
 
 .info {
   border-bottom: var(--border);
@@ -128,4 +150,24 @@ a:hover > h2::after {
   background-color: var(--fg);
   color: var(--bg);
   padding: 0.2em 1em;
+}
+
+@keyframes accent-flash {
+  0% {
+    color: var(--fg);
+  }
+
+  3% {
+    color: var(--accent);
+    text-shadow: 0px 0px 5px var(--accent);
+  }
+
+  50% {
+    color: var(--bg);
+    text-shadow: 0px 0px 5px var(--bg);
+  }
+
+  100% {
+    color: var(--fg);
+  }
 }
