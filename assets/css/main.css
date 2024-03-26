@@ -79,6 +79,8 @@ a {
   display: flex;
 
   transition: var(0.25 * var(--hover-animation-speed));
+
+  min-height: 5em;
 }
 
 .main-list a > div:first-child {
@@ -228,7 +230,7 @@ img {
   pointer-events: none;
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 600px) {
   a img {
     filter: blur(4px);
   }
