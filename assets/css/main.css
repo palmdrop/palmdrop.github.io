@@ -107,10 +107,6 @@ a {
   background-color: var(--gray2);
 }
 
-.main-list a:hover > div:last-child {
-  overflow: visible;
-}
-
 h2 {
   position: relative;
   font-size: 1.0em;
@@ -152,11 +148,6 @@ h2::before {
 
 a:hover h2 {
   padding-right: 0.2em;
-
-  /*
-  text-shadow: 0px 0px 5px var(--accent);
-  color: var(--accent);
-  */
 }
 
 a:hover h2::after {
@@ -176,7 +167,7 @@ a:hover h2::before {
 .elsewhere-links a {
   display: block;
   text-shadow: 0px 0px 0px var(--fg);
-  padding: 0.3em var(--padding-y);
+  padding: var(--padding-y) var(--padding-x);
 
   transition: calc(0.25 * var(--hover-animation-speed));
 }
@@ -213,7 +204,7 @@ a:hover h2::before {
 }
 
 img {
-  width: 100%;
+  min-width: 100%;
   max-height: 100%;
 
   object-fit: cover;
@@ -231,6 +222,10 @@ img {
 }
 
 @media screen and (min-width: 600px) {
+  .main-list a:hover > div:last-child {
+    overflow: visible;
+  }
+
   a img {
     filter: blur(4px);
   }
