@@ -4,9 +4,10 @@
 
   --accent: rgb(0, 21, 255);
 
-  --gray: rgb(172, 176, 180);
+  --gray1: rgb(172, 176, 180);
+  --gray2: rgb(220, 220, 220);
 
-  --border: 1px solid var(--gray);
+  --border: 1px solid var(--gray1);
   --text-shadow: 0px 0px 2px var(--fg);
   --text-shadow-inverted: 0px 0px 5px var(--bg);
 
@@ -76,6 +77,8 @@ a {
 
 .main-list a {
   display: flex;
+
+  transition: var(0.25 * var(--hover-animation-speed));
 }
 
 .main-list a > div:first-child {
@@ -98,6 +101,10 @@ a {
   overflow: hidden;
 }
 
+.main-list a:hover > * {
+  background-color: var(--gray2);
+}
+
 .main-list a:hover > div:last-child {
   overflow: visible;
 }
@@ -112,7 +119,7 @@ h2 {
   text-shadow: var(--text-shadow);
   display: inline-block;
 
-  transition: 1.0s;
+  transition: calc(0.25 * var(--hover-animation-speed));
 }
 
 h1, h2 {
@@ -142,8 +149,12 @@ h2::before {
 }
 
 a:hover h2 {
-  text-shadow: 0px 0px 5px var(--fg);
   padding-right: 0.2em;
+
+  /*
+  text-shadow: 0px 0px 5px var(--accent);
+  color: var(--accent);
+  */
 }
 
 a:hover h2::after {
@@ -162,9 +173,10 @@ a:hover h2::before {
 
 .elsewhere-links a {
   display: block;
-  transition: var(--hover-animation-speed);
   text-shadow: 0px 0px 0px var(--fg);
   padding: 0.3em var(--padding-y);
+
+  transition: calc(0.25 * var(--hover-animation-speed));
 }
 
 .elsewhere-links a::before {
@@ -185,6 +197,7 @@ a:hover h2::before {
 .elsewhere-links a:hover {
   animation: accent-flash var(--hover-animation-speed);
   text-shadow: 0px 0px 3px var(--fg);
+  background-color: var(--gray2);
 }
 
 .info {
@@ -212,25 +225,31 @@ img {
   box-shadow: 0px 0px 0px var(--bg);
   background-color: var(--fg);
 
-  filter: blur(4px);
+  pointer-events: none;
 }
 
-a:hover img {
-  object-fit: contain;
-  width: 400px;
-  max-width: 80vw;
-  height: 600px;
-  max-height: 120vw;
+@media screen and (min-width: 400px) {
+  a img {
+    filter: blur(4px);
+  }
 
-  transform: translate(-40%, 10%);
-  box-shadow: 0.5em 0.5em 2em -0.3em var(--fg);
+  a:hover img {
+    object-fit: contain;
+    width: 400px;
+    max-width: 80vw;
+    height: 600px;
+    max-height: 120vw;
 
-  border: 1px solid var(--fg);
+    transform: translate(-40%, 10%);
+    box-shadow: 0.5em 0.5em 2em -0.3em var(--fg);
 
-  z-index: 2;
+    border: 1px solid var(--fg);
 
-  filter: blur(0px);
-  animation: blur-flash var(--hover-animation-speed);
+    z-index: 2;
+
+    filter: blur(0px);
+    animation: blur-flash var(--hover-animation-speed);
+  }
 }
 
 @keyframes accent-flash {
