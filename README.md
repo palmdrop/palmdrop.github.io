@@ -1,4 +1,4 @@
-**[palmdrop.github.io](palmdrop.github.io)**
+**[palmdrop.github.io](https://palmdrop.github.io)**
 
 Personal intersection. A mini-portfolio, a series of experiments, a place to dump whatever I'm working on at the moment. 
 
