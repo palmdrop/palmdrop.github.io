@@ -1,0 +1,31 @@
+{
+  "_constant-DjFCQ3jT.js": {
+    "file": "assets/constant-DjFCQ3jT.js",
+    "name": "constant"
+  },
+  "src/routes/index.tsx?pick=default&pick=$css": {
+    "file": "assets/index-Cmluuy-d.js",
+    "name": "index",
+    "src": "src/routes/index.tsx?pick=default&pick=$css",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_constant-DjFCQ3jT.js"
+    ]
+  },
+  "virtual:$vinxi/handler/client": {
+    "file": "assets/client-CbEkPshd.js",
+    "name": "client",
+    "src": "virtual:$vinxi/handler/client",
+    "isEntry": true,
+    "imports": [
+      "_constant-DjFCQ3jT.js"
+    ],
+    "dynamicImports": [
+      "src/routes/index.tsx?pick=default&pick=$css"
+    ],
+    "css": [
+      "assets/client-DK4qtaoU.css"
+    ]
+  }
+}
